@@ -15,14 +15,18 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-    font-weight: 500;
-    color: #646cff;
-    text-decoration: inherit;
-}
 
-a:hover {
-    color: #535bf2;
+@layer base {
+    body {
+        @apply min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center;
+        background-image: url("rick-and-morty.jpg");
+    }
+
+    body.no-scroll {
+        overflow: hidden;
+        min-height: 100vh;
+        height: 100vh;
+    }
 }
 
 body {
@@ -31,6 +35,11 @@ body {
     place-items: center;
     min-width: 320px;
     min-height: 100vh;
+    background-image: url("rick-and-morty.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 h1 {
