@@ -1,12 +1,10 @@
-import { Character } from "@/type"
+import type { Character } from "../type.d"
 
-export const CharacterCard = (
-    { id, image, name, status, gender } : Character
+export const CharacterCard: React.FC<Character> = (
+    { image, name, status, gender }: Character
 ) => {
     return (
-
         <div
-            key={id}
             className='bg-white rounded-lg shadow-md overflow-hidden'
         >
             <img

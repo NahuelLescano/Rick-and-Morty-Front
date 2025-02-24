@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { Link, useLocation } from "react-router-dom"
 
-export const LandingPage = () => {
+export const LandingPage: React.FC = () => {
     const location = useLocation()
 
     useEffect(() => {
@@ -18,7 +18,7 @@ export const LandingPage = () => {
 
     return (
         <main className="flex flex-col items-center justify-center h-screen">
-            <div className="bg-white/20 backdrop-blur-md rounded-lg p-8 shadow-lg">
+            <div className="bg-white/20 border-2 backdrop-blur-md rounded-lg p-8 shadow-lg">
                 <h1
                     className="text-5xl font-bold text-orange-600/70 mb-8"
                 >
