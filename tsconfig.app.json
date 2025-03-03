@@ -22,7 +22,10 @@
             ],
             "@utils/*": [
                 "src/utils/*"
-            ]
+            ],
+            "@/*": [
+                "src/*"
+                ]
         },
 
         /* Bundler mode */

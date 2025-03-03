@@ -1,15 +1,26 @@
 import { CharacterCard } from "@components/CharacterCard"
-import { useCharacters } from "@hooks/useCharacters"
-import { Character } from "../type.d"
+import { useQuery } from "@tanstack/react-query"
+import { getCharacters } from "@utils/characters"
 
 export const HomePage: React.FC = () => {
-    const { characters } = useCharacters()
+    const { data: characters, isLoading, error } = useQuery({
+        queryKey: ["characters"],
+        queryFn: getCharacters
+    })
+
+    if (isLoading) {
+        return <div>Loading...</div>
+    }
+
+    if (error) {
+        return <div>An error has occurred...</div>
+    }
 
     return (
         <main className='min-h-screen py-8'>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
                 {
-                    characters.map((char: Character) => (
+                    characters?.map((char) => (
                         <CharacterCard
                             key={char.id}
                             id={char.id}
