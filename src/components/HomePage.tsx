@@ -1,18 +1,23 @@
 import { CharacterCard } from "@components/CharacterCard"
 import { useQuery } from "@tanstack/react-query"
 import { getCharacters } from "@utils/characters"
+import { useState } from "react"
 
 export const HomePage: React.FC = () => {
-    const { data: characters, isLoading, error } = useQuery({
+    const [page, setPage] = useState(1)
+
+    const { data: characters, isLoading, isError } = useQuery({
         queryKey: ["characters"],
-        queryFn: getCharacters
+        queryFn: () => getCharacters(page)
     })
+
+    console.log(page);
 
     if (isLoading) {
         return <div>Loading...</div>
     }
 
-    if (error) {
+    if (isError) {
         return <div>An error has occurred...</div>
     }
 
@@ -27,14 +32,24 @@ export const HomePage: React.FC = () => {
                             name={char.name}
                             status={char.status}
                             gender={char.gender}
-                            species={char.species}
-                            origin={char.origin}
                             image={char.image}
-                            location={char.location}
-                            url={char.url}
                         />
                     ))
                 }
+            </div>
+            <div>
+                <button
+                    onClick={() => setPage((prevPage) => Math.max(prevPage - 1, 1))}
+                    disabled={page === 1}
+                >
+                    Prev
+                </button>
+
+                <button
+                    onClick={() => setPage((prevPage) => prevPage + 1)}
+                >
+                    Next
+                </button>
             </div>
         </main>
     )

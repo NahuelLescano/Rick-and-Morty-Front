@@ -1,13 +1,23 @@
-export interface Character {
-    id:       number;
-    name:     string;
-    status:   string;
+export interface CharacterApi {
+    info:    Info;
+    results: Result[];
+}
+
+export interface Info {
+    count: number;
+    pages: number;
+    next:  string | null;
+    prev:  string | null;
+}
+
+export interface Result extends Character {
     species:  string;
-    gender:   string;
+    type:     string;
     origin:   Location;
     location: Location;
-    image:    string;
+    episode:  string[];
     url:      string;
+    created:  Date;
 }
 
 export interface Location {
@@ -15,4 +25,10 @@ export interface Location {
     url:  string;
 }
 
-export type Characters = Character[];
+export interface Character {
+    id:       number;
+    name:     string;
+    status:   string;
+    gender:   string;
+    image:    string;
+}
