@@ -1,7 +1,8 @@
-import { useQuery } from "@tanstack/react-query"
-import { getCharacterById } from "@utils/characters"
-import { useParams } from "react-router-dom"
 import { Card } from "@components/Card"
+import { Loading } from "@components/Loading"
+import { getCharacterById } from "@utils/characters"
+import { useQuery } from "@tanstack/react-query"
+import { useParams } from "react-router-dom"
 
 export const CharacterDetail: React.FC = () => {
     const { id } = useParams()
@@ -13,7 +14,7 @@ export const CharacterDetail: React.FC = () => {
     })
 
     if (isLoading) {
-        return <div>Loading...</div>
+        return <Loading />
     }
 
     if (isError) {

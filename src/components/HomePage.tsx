@@ -1,20 +1,22 @@
 import { CharacterCard } from "@components/CharacterCard"
-import { useQuery } from "@tanstack/react-query"
+import { Pagination } from "@components/Pagination"
+import { Loading } from "@components/Loading"
 import { getCharacters } from "@utils/characters"
-import { useState } from "react"
+import { useQuery } from "@tanstack/react-query"
 
-export const HomePage: React.FC = () => {
-    const [page, setPage] = useState(1)
+interface Props {
+    page: number
+    setPage: React.Dispatch<React.SetStateAction<number>>
+}
 
+export const HomePage: React.FC<Props> = ({ page, setPage }) => {
     const { data: characters, isLoading, isError } = useQuery({
-        queryKey: ["characters"],
+        queryKey: ["characters", page],
         queryFn: () => getCharacters(page)
     })
 
-    console.log(page);
-
     if (isLoading) {
-        return <div>Loading...</div>
+        return <Loading />
     }
 
     if (isError) {
@@ -23,6 +25,8 @@ export const HomePage: React.FC = () => {
 
     return (
         <main className='min-h-screen py-8'>
+            <Pagination page={page} setPage={setPage} />
+
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
                 {
                     characters?.map((char) => (
@@ -37,20 +41,8 @@ export const HomePage: React.FC = () => {
                     ))
                 }
             </div>
-            <div>
-                <button
-                    onClick={() => setPage((prevPage) => Math.max(prevPage - 1, 1))}
-                    disabled={page === 1}
-                >
-                    Prev
-                </button>
 
-                <button
-                    onClick={() => setPage((prevPage) => prevPage + 1)}
-                >
-                    Next
-                </button>
-            </div>
+            <Pagination page={page} setPage={setPage} />
         </main>
     )
 }

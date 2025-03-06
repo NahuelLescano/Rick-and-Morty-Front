@@ -5,9 +5,9 @@ const BASE_URL = 'https://rickandmortyapi.com/api/character/'
 const fetchCharacter = async (page: number | null, id?: number) => {
     let url = BASE_URL
     if (id) {
-        url = `${BASE_URL}/${id}`
+        url = `${BASE_URL}${id}`
     } else {
-        url = `${BASE_URL}/?page=${page}`
+        url = `${BASE_URL}?page=${page}`
     }
 
     try {

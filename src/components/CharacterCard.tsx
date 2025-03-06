@@ -1,6 +1,6 @@
-import type { Character } from "@/type.d"
 import { Link } from "react-router-dom"
-import { Card } from "./Card"
+import { Card } from "@components/Card"
+import type { Character } from "@/type.d"
 
 export const CharacterCard: React.FC<Character> = (
     { id, image, name, status, gender }

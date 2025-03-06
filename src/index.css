@@ -18,8 +18,9 @@
 
 @layer base {
     body {
-        @apply min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center;
+        @apply min-h-screen bg-fixed bg-center bg-no-repeat flex items-center justify-center;
         background-image: url("rick-and-morty.jpg");
+        background-size: auto 150vh;
     }
 
     body.no-scroll {

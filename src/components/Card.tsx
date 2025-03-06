@@ -1,17 +1,14 @@
-import type { Location } from "@/type.d"
+import type { Character, Location } from "@/type.d"
 
-interface Props {
-    id:         number;
-    name:       string;
-    status:     string;
-    image:      string;
-    gender:     string;
+interface Props extends Character {
     species?:   string;
     origin?:    Location;
     location?:  Location;
 }
 
-export const Card: React.FC<Props> = ({ image, name, status, gender, species, origin, location }) => {
+export const Card: React.FC<Props> = (
+    { image, name, status, gender, species, origin, location }
+) => {
     return (
         <section className='bg-white rounded-lg shadow-md overflow-hidden'>
             <img
