@@ -1,31 +1,27 @@
 import { Card } from "@components/Card"
+import { ErrorFallback } from "@components/ErrorFallback"
 import { Loading } from "@components/Loading"
 import { getCharacterById } from "@utils/characters"
-import { useQuery } from "@tanstack/react-query"
 import { useParams } from "react-router-dom"
+import { useSuspenseQuery } from "@tanstack/react-query"
+import { Suspense } from "react"
 
 export const CharacterDetail: React.FC = () => {
     const { id } = useParams()
     if (id == null) return
 
-    const { data: charDetail, isLoading, isError } = useQuery({
+    const { data: charDetail, isError } = useSuspenseQuery({
         queryKey: ["characterDetail", Number(id)],
         queryFn: () => getCharacterById(Number(id)),
     })
 
-    if (isLoading) {
-        return <Loading />
-    }
-
     if (isError) {
-        return <div>Something were wrong!</div>
-    }
-
-    if (!charDetail) {
-        return <div>No character were found.</div>
+        return <ErrorFallback />
     }
 
     return (
-        <Card {...charDetail} />
+        <Suspense fallback={<Loading />}>
+            <Card {...charDetail} />
+        </Suspense>
     )
 }

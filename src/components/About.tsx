@@ -3,9 +3,9 @@ export const About: React.FC = () => {
         <main className="border-2 backdrop-blur-md bg-transparent rounded-lg shadow-md overflow-hidden">
             <div className="p-5">
                 <img
-                    src="./profile-photo.jpg"
+                    src="images/profile-photo.webp"
                     alt="A random image"
-                    className="w-full h-64 object-cover rounded-lg"
+                    className="object-cover"
                 />
                 <p
                     className="text-4xl font-semibold text-wrap text-gray-900">

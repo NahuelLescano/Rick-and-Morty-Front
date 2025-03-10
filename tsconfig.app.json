@@ -23,9 +23,12 @@
             "@utils/*": [
                 "src/utils/*"
             ],
+            "@consts/*": [
+                "src/consts/*"
+            ],
             "@/*": [
                 "src/*"
-                ]
+            ]
         },
 
         /* Bundler mode */
@@ -35,7 +38,6 @@
         "moduleDetection": "force",
         "noEmit": true,
         "jsx": "react-jsx",
-
         /* Linting */
         "strict": true,
         "noUnusedLocals": true,

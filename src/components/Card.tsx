@@ -21,12 +21,12 @@ export const Card: React.FC<Props> = (
                 <h2
                     className='text-pretty font-semibold mb-2 text-gray-800'
                 >
-                    name: {name}
+                    {name}
                 </h2>
                 <h2
                     className='text-pretty text-gray-600'
                 >
-                    gender: {gender}
+                    {gender}
                 </h2>
                 {
                     location &&
